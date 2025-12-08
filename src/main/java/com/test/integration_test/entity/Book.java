@@ -8,12 +8,10 @@ import lombok.*;
 @NoArgsConstructor
 public class Book {
 
-    private String book;
-
-    private String author;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String book;
+    private String author;
 
 }
