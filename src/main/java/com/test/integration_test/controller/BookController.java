@@ -35,9 +35,9 @@ public class BookController {
         return ResponseEntity.ok(bookService.findAllBooks());
     }
 
-    @PostMapping("add/dto")
-    public ResponseEntity<BookResponseDto> getAllWithDTO(@RequestBody Book book){
-        return ResponseEntity.ok(bookService.addDto());
-    }
+//    @PostMapping("add/dto")
+//    public ResponseEntity<BookResponseDto> getAllWithDTO(@RequestBody Book book){
+//        return ResponseEntity.ok(bookService.addDto());
+//    }
 
 }
