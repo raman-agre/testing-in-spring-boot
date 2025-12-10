@@ -1,16 +1,16 @@
 package com.test.integration_test.controller;
 
+import com.test.integration_test.dto.BookRequestDto;
 import com.test.integration_test.dto.BookResponseDto;
 import com.test.integration_test.entity.Book;
 import com.test.integration_test.service.BookServiceImpl;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/library")
+@RequestMapping("/books")
 public class BookController {
 
     BookServiceImpl bookService;
@@ -19,11 +19,25 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/book/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<BookResponseDto> getBookDetails(@PathVariable Integer id){
-        Book book = bookService.getBookById(id);
-        BookResponseDto bookResponseDto = new BookResponseDto(book.getBook(), book.getAuthor(), book.getId());
-        return ResponseEntity.ok(bookResponseDto);
+        return ResponseEntity.ok(bookService.findBook(id));
     }
+
+    @PostMapping("/add")
+    public BookResponseDto addBookDetails(@RequestBody BookRequestDto bookRequestDto){
+        return bookService.addBook(bookRequestDto);
+    }
+
+    @GetMapping("/get/all")
+    public ResponseEntity<List<BookResponseDto>> getAllBooks(){
+//        List<BookResponseDto> responseDtoList =
+        return ResponseEntity.ok(bookService.findAllBooks());
+    }
+
+//    @PostMapping("add/dto")
+//    public ResponseEntity<BookResponseDto> getAllWithDTO(@RequestBody Book book){
+//        return ResponseEntity.ok(bookService.addDto());
+//    }
 
 }
