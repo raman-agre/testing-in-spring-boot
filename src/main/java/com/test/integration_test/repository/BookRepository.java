@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -31,7 +33,10 @@ public class BookRepository{
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("name", book.getBook())
                 .addValue("author", book.getAuthor());
-        namedParameterJdbcTemplate.update(sql, parameterSource);
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        namedParameterJdbcTemplate.update(sql, parameterSource, keyHolder, new String[]{"book_id"});
+        Number generatedId = keyHolder.getKey();
+        book.setId(generatedId.intValue());
     }
 
     public List<BookResponseDto> findAll(){
