@@ -4,10 +4,13 @@ import com.test.integration_test.dto.BookRequestDto;
 import com.test.integration_test.dto.BookResponseDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -49,4 +52,5 @@ public class BookIntegrationTest {
         assertNotNull(entity.getBody());
         assertEquals(HttpStatus.OK, entity.getStatusCode());
     }
+
 }
