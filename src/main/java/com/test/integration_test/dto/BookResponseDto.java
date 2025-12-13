@@ -6,12 +6,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class BookResponseDto {
 
     private String bookName;
     private String author;
     private Integer bookId;
+
+    public BookResponseDto(String bookName, String author, Integer bookId){
+        System.out.println("BookResponseDto constructor called!!!");
+        this.bookName = bookName;
+        this.author = author;
+        this.bookId = bookId;
+    }
 
 }

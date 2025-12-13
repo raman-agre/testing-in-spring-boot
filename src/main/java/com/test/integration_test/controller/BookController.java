@@ -26,6 +26,7 @@ public class BookController {
 
     @PostMapping("/add")
     public BookResponseDto addBookDetails(@RequestBody BookRequestDto bookRequestDto){
+        System.out.println("Post controller called!!!");
         return bookService.addBook(bookRequestDto);
     }
 
