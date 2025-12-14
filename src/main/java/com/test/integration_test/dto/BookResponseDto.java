@@ -14,7 +14,6 @@ public class BookResponseDto {
     private Integer bookId;
 
     public BookResponseDto(String bookName, String author, Integer bookId){
-        System.out.println("BookResponseDto constructor called!!!");
         this.bookName = bookName;
         this.author = author;
         this.bookId = bookId;
